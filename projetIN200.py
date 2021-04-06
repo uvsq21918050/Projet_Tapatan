@@ -7,7 +7,7 @@
 # Pascal CHRISTOPHE
 # El guehoudi Wacil
 
-# https://github.com/uvsq22004748/Projet_Tapatan
+# https://github.com/uvsq22004748/Projet-incendie
 #########################################
 
 # on importe tkinter
@@ -33,26 +33,28 @@ SCORE.create_line(0, 100, 100, 100, fill="black", width=2)
 """chaque ligne est en deux parties pour faciliter le calcul des coordonnées
 lors des deplacement des pions sur le plateau"""
 
-CANVAS.create_line(20, 20, 200, 20, fill= 'yellow', width=2)
-CANVAS.create_line(200, 20, 380, 20, fill= 'yellow', width=2)
+"""la couleur sera amenée a etre changée"""
 
-CANVAS.create_line(20, 380, 380, 380, fill= 'blue', width=2)
-CANVAS.create_line(20, 380, 380, 380, fill= 'blue', width=2)
+CANVAS.create_line(20, 20, 200, 20, fill= 'orange', width=2)
+CANVAS.create_line(200, 20, 380, 20, fill= 'orange', width=2)
 
-CANVAS.create_line(20, 20, 20, 200, fill= 'red', width=2)
-CANVAS.create_line(20, 200, 20, 380, fill= 'red', width=2)
+CANVAS.create_line(20, 380, 380, 380, fill= 'orange', width=2)
+CANVAS.create_line(20, 380, 380, 380, fill= 'orange', width=2)
 
-CANVAS.create_line(20, 20, 200, 200, fill= 'green', width=2)
-CANVAS.create_line(200, 200, 380, 380, fill= 'green', width=2)
+CANVAS.create_line(20, 20, 20, 200, fill= 'orange', width=2)
+CANVAS.create_line(20, 200, 20, 380, fill= 'orange', width=2)
 
-CANVAS.create_line(20, 380, 200, 200, fill= 'sky blue', width=2)
-CANVAS.create_line(200, 200, 380, 20, fill= 'sky blue', width=2)
+CANVAS.create_line(20, 20, 200, 200, fill= 'orange', width=2)
+CANVAS.create_line(200, 200, 380, 380, fill= 'orange', width=2)
 
-CANVAS.create_line(380, 20, 380, 200, fill= 'violet', width=2)
-CANVAS.create_line(380, 200, 380, 380, fill= 'violet', width=2)
+CANVAS.create_line(20, 380, 200, 200, fill= 'orange', width=2)
+CANVAS.create_line(200, 200, 380, 20, fill= 'orange', width=2)
 
-CANVAS.create_line(200, 20, 200, 200, fill= 'Turquoise', width=2)
-CANVAS.create_line(200, 200, 200, 380, fill= 'Turquoise', width=2)
+CANVAS.create_line(380, 20, 380, 200, fill= 'orange', width=2)
+CANVAS.create_line(380, 200, 380, 380, fill= 'orange', width=2)
+
+CANVAS.create_line(200, 20, 200, 200, fill= 'orange', width=2)
+CANVAS.create_line(200, 200, 200, 380, fill= 'orange', width=2)
 
 CANVAS.create_line(20, 200, 200, 200, fill= 'orange', width=2)
 CANVAS.create_line(200, 200, 380, 200, fill= 'orange', width=2)
