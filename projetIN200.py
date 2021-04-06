@@ -24,6 +24,8 @@ CANVAS = tk.Canvas(root, width=400, height=400, bg="light grey")
 CANVAS.grid(row=0, rowspan=2, column=0, columnspan=2)
 
 # Dessin du plateau de jeu 
+"""chaque ligne est en deux parties pour faciliter le calcul des coordonnées
+lors des deplacement des pions sur le plateau"""
 
 CANVAS.create_line(20, 20, 200, 20, fill= 'yellow', width=2)
 CANVAS.create_line(200, 20, 380, 20, fill= 'yellow', width=2)
