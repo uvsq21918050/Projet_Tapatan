@@ -18,7 +18,7 @@ racine = tk.Tk()
 
 X = 100
 Y = 100
-COLORS = ['blue', 'rouge']
+COLORS = ['blue', 'red']
 nombre_de_jetons = 0
 
 def lancement():
@@ -29,36 +29,52 @@ def lancement():
     diagonale1 = canvas.create_line(X, Y, 5 * X, 5 * Y, fill='white')
     diagonale2 = canvas.create_line(X, 5 * Y, 5 * X, Y, fill='white')
 
+"""
+def couleur ():
+    global couleur
+    if nombre_de_jetons // 2 == 0 :
+        couleur = 'blue'
+    elif nombre_de_jetons // 2 == 1 :
+        couleur = 'red'
+    return couleur
+"""
 def clique(event):
     ''' Cette fonction va permettre de générer les jetons sur le schéma du jeu '''
     global nombre_de_jetons
+    global couleur
+    if nombre_de_jetons % 2 == 0 :
+        couleur = 'blue'
+    elif nombre_de_jetons % 2 == 1 :
+        couleur = 'red'
+    couleurs = couleur
     if (50 <= event.x <= 150) and (50 <= event.y <= 150) and (nombre_de_jetons <= 5):
-        cercle1 = canvas.create_oval(X, Y, X, Y, fill='blue', outline='blue', width=20)
+        cercle1 = canvas.create_oval(X, Y, X, Y, fill = couleurs, outline = couleurs, width=20)
         nombre_de_jetons += 1
     if (250 <= event.x <= 350) and (50 <= event.y <= 150) and (nombre_de_jetons <= 5):
-        cercle2 = canvas.create_oval(3 * X, Y, 3 * X, Y, fill='blue', outline='blue', width=20)
+        cercle2 = canvas.create_oval(3 * X, Y, 3 * X, Y, fill=couleurs, outline=couleurs, width=20)
         nombre_de_jetons += 1
     if (450 <= event.x <= 550) and (50 <= event.y <= 150) and (nombre_de_jetons <= 5):
-        cercle3 = canvas.create_oval(5 * X, Y, 5 * X, Y, fill='blue', outline='blue', width=20)
+        cercle3 = canvas.create_oval(5 * X, Y, 5 * X, Y, fill=couleurs, outline=couleurs, width=20)
         nombre_de_jetons += 1
     if (50 <= event.x <= 150) and (250 <= event.y <= 350) and (nombre_de_jetons <= 5):
-        cercle4 = canvas.create_oval(X, 3 * Y, X, 3 * Y, fill='blue', outline='blue', width=20)
+        cercle4 = canvas.create_oval(X, 3 * Y, X, 3 * Y, fill=couleurs, outline=couleurs, width=20)
         nombre_de_jetons += 1
     if (250 <= event.x <= 350) and (250 <= event.y <= 350) and (nombre_de_jetons <= 5):
-        cercle5 = canvas.create_oval(3 * X, 3 * Y, 3 * X, 3 * Y, fill='blue', outline='blue', width=20)
+        cercle5 = canvas.create_oval(3 * X, 3 * Y, 3 * X, 3 * Y, fill=couleurs, outline=couleurs, width=20)
         nombre_de_jetons += 1
     if (450 <= event.x <= 550) and (250 <= event.y <= 350) and (nombre_de_jetons <= 5):
-        cercle6 = canvas.create_oval(5 * X, 3 * Y, 5 * X, 3 * Y, fill='blue', outline='blue', width=20)
+        cercle6 = canvas.create_oval(5 * X, 3 * Y, 5 * X, 3 * Y, fill=couleurs, outline=couleurs, width=20)
         nombre_de_jetons += 1
     if (50 <= event.x <= 150) and (450 <= event.y <= 550) and (nombre_de_jetons <= 5):
-        cercle7 = canvas.create_oval(X, 5 * Y, X, 5 * Y, fill='blue', outline='blue', width=20)
+        cercle7 = canvas.create_oval(X, 5 * Y, X, 5 * Y, fill=couleurs, outline=couleurs, width=20)
         nombre_de_jetons += 1
     if (250 <= event.x <= 350) and (450 <= event.y <= 550) and (nombre_de_jetons <= 5):
-        cercle8 = canvas.create_oval(3 * X, 5 * Y, 3 * X, 5 * Y, fill='blue', outline='blue', width=20)
+        cercle8 = canvas.create_oval(3 * X, 5 * Y, 3 * X, 5 * Y, fill=couleurs, outline=couleurs, width=20)
         nombre_de_jetons += 1
     if (450 <= event.x <= 550) and (450 <= event.y <= 550) and (nombre_de_jetons <= 5):
-        cercle9 = canvas.create_oval(5 * X, 5 * Y, 5 * X, 5 * Y, fill='blue', outline='blue', width=20)
+        cercle9 = canvas.create_oval(5 * X, 5 * Y, 5 * X, 5 * Y, fill=couleurs, outline=couleurs, width=20)
         nombre_de_jetons += 1
+
 
 def arreter():
     ''' Cette fonction va arreter le programme en cours '''
