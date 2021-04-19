@@ -68,7 +68,7 @@ def arreter():
     racine.destroy()
 
 
-SCORE = tk.Canvas(root, width=100, height=200, bg="darkgrey")
+SCORE = tk.Canvas(racine, width=100, height=200, bg="darkgrey")
 SCORE.grid(row=1, column=2)
 SCORE.create_line(0, 100, 100, 100, fill="black", width=2)
     
