@@ -68,6 +68,10 @@ def arreter():
     racine.destroy()
 
 
+SCORE = tk.Canvas(root, width=100, height=200, bg="darkgrey")
+SCORE.grid(row=1, column=2)
+SCORE.create_line(0, 100, 100, 100, fill="black", width=2)
+    
 canvas = tk.Canvas(racine, width=600, height=600, bg='black')
 lancement = tk.Button(racine, text='Lancement', bg='grey', command=lancement)
 arreter = tk.Button(racine, text='Arrêter', bg='grey', command=arreter)
