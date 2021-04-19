@@ -10,68 +10,72 @@
 # https://github.com/uvsq22004748/Projet-incendie
 #########################################
 
-# on importe tkinter
+# On importe tkinter
 
-import tkinter as tk 
+import tkinter as tk
 
-# creation de la fenetre de base
+racine = tk.Tk()
 
-root = tk.Tk()
+X = 100
+Y = 100
+COLORS = ['blue', 'rouge']
+nombre_de_jetons = []
 
-# creation et placement du pemier canevas qui sera le plateau de jeu
+def lancement():
+    ''' On definit une fonction qui va permettre de lancer le schéma du jeu du tapatan '''
+    carre = canvas.create_rectangle(X, Y, 600 - X, 600 - Y, outline='white')
+    ligne_verticale = canvas.create_line(3 * X, Y, 3 * X, 5 * Y, fill='white')
+    ligne_horizontale = canvas.create_line(X, 3 * Y, 5 * X, 3 * Y, fill='white')
+    diagonale1 = canvas.create_line(X, Y, 5 * X, 5 * Y, fill='white')
+    diagonale2 = canvas.create_line(X, 5 * Y, 5 * X, Y, fill='white')
 
-CANVAS = tk.Canvas(root, width=400, height=400, bg="light grey")
-CANVAS.grid(row=0, rowspan=3, column=0, columnspan=2)
+def clique(event):
+    ''' Cette fonction va permettre de générer les jetons sur le schéma du jeu '''
+    global nombre_de_jetons
+    if (50 <= event.x <= 150) and (50 <= event.y <= 150):
+        cercle1 = canvas.create_oval(X, Y, X, Y, fill='blue', outline='blue', width=20)
+        nombre_de_jetons.append(1)
+    if (250 <= event.x <= 350) and (50 <= event.y <= 150):
+        cercle2 = canvas.create_oval(3 * X, Y, 3 * X, Y, fill='blue', outline='blue', width=20)
+        nombre_de_jetons.append(2)
+    if (450 <= event.x <= 550) and (50 <= event.y <= 150):
+        cercle3 = canvas.create_oval(5 * X, Y, 5 * X, Y, fill='blue', outline='blue', width=20)
+        nombre_de_jetons.append(3)
+    if (50 <= event.x <= 150) and (250 <= event.y <= 350):
+        cercle4 = canvas.create_oval(X, 3 * Y, X, 3 * Y, fill='blue', outline='blue', width=20)
+        nombre_de_jetons.append(4)
+    if (250 <= event.x <= 350) and (250 <= event.y <= 350):
+        cercle5 = canvas.create_oval(3 * X, 3 * Y, 3 * X, 3 * Y, fill='blue', outline='blue', width=20)
+        nombre_de_jetons.append(5)
+    if (450 <= event.x <= 550) and (250 <= event.y <= 350):
+        cercle6 = canvas.create_oval(5 * X, 3 * Y, 5 * X, 3 * Y, fill='blue', outline='blue', width=20)
+        nombre_de_jetons.append(6)
+    if (50 <= event.x <= 150) and (450 <= event.y <= 550):
+        cercle7 = canvas.create_oval(X, 5 * Y, X, 5 * Y, fill='blue', outline='blue', width=20)
+        nombre_de_jetons.append(7)
+    if (250 <= event.x <= 350) and (450 <= event.y <= 550):
+        cercle8 = canvas.create_oval(3 * X, 5 * Y, 3 * X, 5 * Y, fill='blue', outline='blue', width=20)
+        nombre_de_jetons.append(8)
+    if (450 <= event.x <= 550) and (450 <= event.y <= 550):
+        cercle9 = canvas.create_oval(5 * X, 5 * Y, 5 * X, 5 * Y, fill='blue', outline='blue', width=20)
+        nombre_de_jetons.append(9)
+    print(nombre_de_jetons)
+    if len(nombre_de_jetons) == 6:
+        return none
 
-# creation d'un autre canvas qui permettra d'afficher le score 
-
-SCORE = tk.Canvas(root, width=100, height=200, bg="darkgrey")
-SCORE.grid(row=1, column=2)
-SCORE.create_line(0, 100, 100, 100, fill="black", width=2)
-
-# Dessin du plateau de jeu 
-"""chaque ligne est en deux parties pour faciliter le calcul des coordonnées
-lors des deplacement des pions sur le plateau"""
-
-"""la couleur sera amenée a etre changée"""
-
-CANVAS.create_line(20, 20, 200, 20, fill= 'orange', width=2)
-CANVAS.create_line(200, 20, 380, 20, fill= 'orange', width=2)
-
-CANVAS.create_line(20, 380, 380, 380, fill= 'orange', width=2)
-CANVAS.create_line(20, 380, 380, 380, fill= 'orange', width=2)
-
-CANVAS.create_line(20, 20, 20, 200, fill= 'orange', width=2)
-CANVAS.create_line(20, 200, 20, 380, fill= 'orange', width=2)
-
-CANVAS.create_line(20, 20, 200, 200, fill= 'orange', width=2)
-CANVAS.create_line(200, 200, 380, 380, fill= 'orange', width=2)
-
-CANVAS.create_line(20, 380, 200, 200, fill= 'orange', width=2)
-CANVAS.create_line(200, 200, 380, 20, fill= 'orange', width=2)
-
-CANVAS.create_line(380, 20, 380, 200, fill= 'orange', width=2)
-CANVAS.create_line(380, 200, 380, 380, fill= 'orange', width=2)
-
-CANVAS.create_line(200, 20, 200, 200, fill= 'orange', width=2)
-CANVAS.create_line(200, 200, 200, 380, fill= 'orange', width=2)
-
-CANVAS.create_line(20, 200, 200, 200, fill= 'orange', width=2)
-CANVAS.create_line(200, 200, 380, 200, fill= 'orange', width=2)
-
-
-# fonctions
-
-def fermer_fenetre (): 
-    """cette fonction est reliée au bouton qui arrete le programme, elle ferme tout simplement la fenetre"""
-    root.destroy()
+def arreter():
+    ''' Cette fonction va arreter le programme en cours '''
+    racine.destroy()
 
 
-# création des differents boutons 
+canvas = tk.Canvas(racine, width=600, height=600, bg='black')
+lancement = tk.Button(racine, text='Lancement', bg='grey', command=lancement)
+arreter = tk.Button(racine, text='Arrêter', bg='grey', command=arreter)
+canvas.bind('<Button-1>', clique)
 
-DEMARER = tk.Button(root, text="Démarer / Recommencer", bg="grey")
-DEMARER.grid (row=3, column=0)
-ARRETER = tk.Button(root, text="Arrêter", bg="grey", command=fermer_fenetre)
-ARRETER.grid (row=3, column=1)
+canvas.grid(row=0, column=0, columnspan=3)
+lancement.grid(row=1, column=0)
+arreter.grid(row=1, column=2)
 
-root.mainloop()
+
+racine.mainloop()
