@@ -19,7 +19,7 @@ racine = tk.Tk()
 X = 100
 Y = 100
 COLORS = ['blue', 'rouge']
-nombre_de_jetons = []
+nombre_de_jetons = 0
 
 def lancement():
     ''' On definit une fonction qui va permettre de lancer le schéma du jeu du tapatan '''
@@ -69,7 +69,6 @@ def arreter():
 
 
 SCORE = tk.Canvas(racine, width=100, height=200, bg="darkgrey")
-SCORE.grid(row=1, column=2)
 SCORE.create_line(0, 100, 100, 100, fill="black", width=2)
     
 canvas = tk.Canvas(racine, width=600, height=600, bg='black')
@@ -80,6 +79,6 @@ canvas.bind('<Button-1>', clique)
 canvas.grid(row=0, column=0, columnspan=3)
 lancement.grid(row=1, column=0)
 arreter.grid(row=1, column=2)
-
+SCORE.grid(row=0, column=3)
 
 racine.mainloop()
