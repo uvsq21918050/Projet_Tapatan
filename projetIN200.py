@@ -7,7 +7,7 @@
 # Pascal CHRISTOPHE
 # El guehoudi Wacil
 
-# https://github.com/uvsq22004748/Projet-incendie
+# https://github.com/uvsq22004748/Projet_Tapatan
 #########################################
 
 # On importe tkinter
@@ -25,8 +25,6 @@ nombre_de_jetons = 0
 
 place = [[0,0,0],[0,0,0],[0,0,0]]
 
-
-
 def lancement():
     ''' On definit une fonction qui va permettre de lancer le schéma du jeu du tapatan '''
     carre = canvas.create_rectangle(X, Y, 600 - X, 600 - Y, outline='white')
@@ -34,6 +32,10 @@ def lancement():
     ligne_horizontale = canvas.create_line(X, 3 * Y, 5 * X, 3 * Y, fill='white')
     diagonale1 = canvas.create_line(X, Y, 5 * X, 5 * Y, fill='white')
     diagonale2 = canvas.create_line(X, 5 * Y, 5 * X, Y, fill='white')
+
+def arreter():
+    ''' Cette fonction va arreter le programme en cours '''
+    racine.destroy()
 
 
 ##################### PLACEMENT DES JETONS AU DEBUT DE LA PARTIE #####################
@@ -144,39 +146,19 @@ def clique(event):
 def victoire (): 
     global win
     win = 0
-    if place[0][0] + place [0][1] + place [0][2]==3 :
-        win += 1   
-    if place[1][0] + place [1][1] + place [1][2]==3 :
-        win += 1   
-    if place[2][0] + place [2][1] + place [2][2]==3 :
-        win += 1    
-    if place[0][0] + place [1][0] + place [2][0]==3 :
-        win += 1       
-    if place[0][1] + place [1][1] + place [2][1]==3 :
-        win += 1        
-    if place[0][2] + place [1][2] + place [2][2]==3 :
-        win += 1        
-    if place[0][0] + place [1][1] + place [2][2]==3 :
-        win += 1        
-    if place[0][2] + place [1][1] + place [2][0]==3 :
+
+    if place[0][0] + place [0][1] + place [0][2]==3 or place[1][0] + place [1][1] + place [1][2]==3 or \
+         place[2][0] + place [2][1] + place [2][2]==3 or place[0][0] + place [1][0] + place [2][0]==3 or \
+              place[0][1] + place [1][1] + place [2][1]==3 or place[0][2] + place [1][2] + place [2][2]==3 or \
+                   place[0][0] + place [1][1] + place [2][2]==3 or place[0][2] + place [1][1] + place [2][0]==3 :
         win += 1
 
-    if place[0][0] + place [0][1] + place [0][2]==-3 :
-        win -= 1   
-    if place[1][0] + place [1][1] + place [1][2]==-3 :
-        win -= 1   
-    if place[2][0] + place [2][1] + place [2][2]==-3 :
-        win -= 1    
-    if place[0][0] + place [1][0] + place [2][0]==-3 :
-        win -= 1       
-    if place[0][1] + place [1][1] + place [2][1]==-3 :
-        win -= 1        
-    if place[0][2] + place [1][2] + place [2][2]==-3 :
-        win -= 1        
-    if place[0][0] + place [1][1] + place [2][2]==-3 :
-        win -= 1        
-    if place[0][2] + place [1][1] + place [2][0]==-3 :
+    if place[0][0] + place [0][1] + place [0][2]==-3 or place[1][0] + place [1][1] + place [1][2]==-3 or \
+         place[2][0] + place [2][1] + place [2][2]==-3 or place[0][0] + place [1][0] + place [2][0]==-3 or \
+              place[0][1] + place [1][1] + place [2][1]==-3 or place[0][2] + place [1][2] + place [2][2]==-3 or \
+                   place[0][0] + place [1][1] + place [2][2]==-3 or place[0][2] + place [1][1] + place [2][0]==-3 :
         win -= 1
+
     return (win)        
 
 def gagne () : 
@@ -184,11 +166,11 @@ def gagne () :
     global win
     if win == 1 :
         print ("Victoire des Bleu")
-        blue_win = tk.Canvas (racine, width=150, height=50, bg='blue')
+        blue_win = tk.Canvas (racine, width=200, height=50, bg='blue')
         blue_win.grid(row = 0, column = 3)
     if win == -1 :
         print ("Victoire des Rouges")
-        red_win = tk.Canvas (racine, width=150, height=50, bg='red')
+        red_win = tk.Canvas (racine, width=200, height=50, bg='red')
         red_win.grid(row = 0, column = 3)
 
 
@@ -204,19 +186,15 @@ D2 = place[0][2] + place [1][1] + place [2][0]
 """
 
 
-def arreter():
-    ''' Cette fonction va arreter le programme en cours '''
-    racine.destroy()
-
-
 canvas = tk.Canvas(racine, width=600, height=600, bg='black')
 lancement = tk.Button(racine, text='Lancement', bg='grey', command=lancement)
 arreter = tk.Button(racine, text='Arrêter', bg='grey', command=arreter)
 canvas.bind('<Button-1>', clique)
+espace = tk.Canvas(racine,width=200, height=1, bg='white')
 
 canvas.grid(row=0, column=0, columnspan=3)
 lancement.grid(row=1, column=0)
 arreter.grid(row=1, column=2)
-
+espace.grid (column=3)
 
 racine.mainloop()
