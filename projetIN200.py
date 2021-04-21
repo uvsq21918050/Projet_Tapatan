@@ -180,35 +180,17 @@ def victoire ():
     return (win)        
 
 def gagne () : 
+    """cette fonction detect si 3 pions sont allignés"""
     global win
     if win == 1 :
         print ("Victoire des Bleu")
+        blue_win = tk.Canvas (racine, width=150, height=50, bg='blue')
+        blue_win.grid(row = 0, column = 3)
     if win == -1 :
         print ("Victoire des Rouges")
+        red_win = tk.Canvas (racine, width=150, height=50, bg='red')
+        red_win.grid(row = 0, column = 3)
 
-
-"""
-def victoire_rouge () : 
-    global win
-    win = 0
-    if place[0][0] + place [0][1] + place [0][2]==-3 :
-        win -= 1   
-    if place[1][0] + place [1][1] + place [1][2]==-3 :
-        win -= 1   
-    if place[2][0] + place [2][1] + place [2][2]==-3 :
-        win -= 1    
-    if place[0][0] + place [1][0] + place [2][0]==-3 :
-        win -= 1       
-    if place[0][1] + place [1][1] + place [2][1]==-3 :
-        win -= 1        
-    if place[0][2] + place [1][2] + place [2][2]==-3 :
-        win -= 1        
-    if place[0][0] + place [1][1] + place [2][2]==-3 :
-        win -= 1        
-    if place[0][2] + place [1][1] + place [2][0]==-3 :
-        win -= 1
-    return (win)  
-"""
 
 """
 L1 = place[0][0] + place [0][1] + place [0][2]
