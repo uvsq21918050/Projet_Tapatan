@@ -37,7 +37,6 @@ def arreter():
     ''' Cette fonction va arreter le programme en cours '''
     racine.destroy()
 
-
 ##################### PLACEMENT DES JETONS AU DEBUT DE LA PARTIE #####################
 
 def clique(event):
@@ -140,7 +139,6 @@ def clique(event):
 
     print (place) 
 
-
 ################# VICTOIRE ##################
 
 def victoire (): 
@@ -174,6 +172,22 @@ def gagne () :
         red_win.grid(row = 0, column = 3)
 
 
+def sauvegarder () :
+    """Sauvegarde les valeurs dans la liste dans le fichier sauvegarde.txt"""
+    place_save = str(place)
+    fic = open("sauvegarde.txt", "w")
+    fic.write(place_save)
+    fic.close()
+
+"""
+def charger () : 
+    fic = open ("sauvegarde.txt", "r")
+    print (fic)
+"""
+
+
+
+
 """
 L1 = place[0][0] + place [0][1] + place [0][2]
 L2 = place[1][0] + place [1][1] + place [1][2]
@@ -189,12 +203,22 @@ D2 = place[0][2] + place [1][1] + place [2][0]
 canvas = tk.Canvas(racine, width=600, height=600, bg='black')
 lancement = tk.Button(racine, text='Lancement', bg='grey', command=lancement)
 arreter = tk.Button(racine, text='Arrêter', bg='grey', command=arreter)
+sauvegarde = tk.Button(racine, text= "Sauvegarder", bg = "grey", command=sauvegarder)
+charger = tk.Button(racine, text= "Charger", bg = "grey", command=charger)
 canvas.bind('<Button-1>', clique)
-espace = tk.Canvas(racine,width=200, height=1, bg='white')
 
-canvas.grid(row=0, column=0, columnspan=3)
+#cela sert juste a créer un espace a droite du canvas de base
+espace = tk.Canvas(racine,width=200, height=1, bg='white')
+espace.grid (column=4)
+
+
+canvas.grid(row=0, column=0, columnspan=4)
 lancement.grid(row=1, column=0)
-arreter.grid(row=1, column=2)
-espace.grid (column=3)
+arreter.grid(row=1, column=4)
+sauvegarde.grid(row=1, column=2)
+charger.grid(row=1, column=1)
+
+
+
 
 racine.mainloop()
