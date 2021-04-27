@@ -13,6 +13,7 @@
 # On importe tkinter
 
 import tkinter as tk
+import pickle
 
 racine = tk.Tk()
 
@@ -265,15 +266,62 @@ def gagne () :
 
 def sauvegarder () :
     """Sauvegarde les valeurs dans la liste dans le fichier sauvegarde.txt"""
-    place_save = str(place)
-    fic = open("sauvegarde.txt", "w")
-    fic.write(place_save)
-    fic.close()
+    pickle.dump (place, open("sauvegarde.p", "wb"))
 
 
 def charger () : 
-    fic = open ("sauvegarde.txt", "r")
-    print (fic)
+    global place
+    global nombre_de_jetons
+    place = pickle.load (open("sauvegarde.p", "rb"))
+    
+    if place [0][0] == 1 :
+        cercle1 = canvas.create_oval(X, Y, X, Y, fill = "blue", outline = "blue", width=20)
+    if place [0][0] == -1 :
+        cercle1 = canvas.create_oval(X, Y, X, Y, fill = "red", outline = "red", width=20)
+
+    if place [0][1] == 1 :
+        cercle2 = canvas.create_oval(3 * X, Y, 3 * X, Y, fill="blue", outline="blue", width=20)
+    if place [0][1] == -1 :
+        cercle2 = canvas.create_oval(3 * X, Y, 3 * X, Y, fill="red", outline="red", width=20)
+
+    if place [0][2] == 1 :
+        cercle3 = canvas.create_oval(5 * X, Y, 5 * X, Y, fill="blue", outline="blue", width=20)
+    if place [0][2] == -1 :
+        cercle3 = canvas.create_oval(5 * X, Y, 5 * X, Y, fill="red", outline="red", width=20)
+
+    if place [1][0] == 1 :
+        cercle4 = canvas.create_oval(X, 3 * Y, X, 3 * Y, fill="blue", outline="blue", width=20)
+    if place [1][0] == -1 :
+        cercle4 = canvas.create_oval(X, 3 * Y, X, 3 * Y, fill="red", outline="red", width=20)
+
+    if place [1][1] == 1 :
+        cercle5 = canvas.create_oval(3 * X, 3 * Y, 3 * X, 3 * Y, fill="blue", outline="blue", width=20)
+    if place [1][1] == -1 :
+        cercle5 = canvas.create_oval(3 * X, 3 * Y, 3 * X, 3 * Y, fill="red", outline="red", width=20)
+
+    if place [1][2] == 1 :
+        cercle6 = canvas.create_oval(5 * X, 3 * Y, 5 * X, 3 * Y, fill="blue", outline="blue", width=20)
+    if place [1][2] == -1 :
+        cercle6 = canvas.create_oval(5 * X, 3 * Y, 5 * X, 3 * Y, fill="red", outline="red", width=20)
+
+    if place [2][0] == 1 :
+        cercle7 = canvas.create_oval(X, 5 * Y, X, 5 * Y, fill="blue", outline="blue", width=20)
+    if place [2][0] == -1 :
+        cercle7 = canvas.create_oval(X, 5 * Y, X, 5 * Y, fill="red", outline="red", width=20)
+
+    if place [2][1] == 1 :
+        cercle8 = canvas.create_oval(3 * X, 5 * Y, 3 * X, 5 * Y, fill="blue", outline="blue", width=20)
+    if place [2][1] == -1 :
+        cercle8 = canvas.create_oval(3 * X, 5 * Y, 3 * X, 5 * Y, fill="red", outline="red", width=20)
+
+    if place [2][2] == 1 :
+        cercle9 = canvas.create_oval(5 * X, 5 * Y, 5 * X, 5 * Y, fill="blue", outline="blue", width=20)
+    if place [2][2] == -1 :
+        cercle9 = canvas.create_oval(5 * X, 5 * Y, 5 * X, 5 * Y, fill="red", outline="red", width=20)
+    
+    nombre_de_jetons = 6
+
+    return (place)
 
 
 
