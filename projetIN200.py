@@ -20,6 +20,8 @@ X = 100
 Y = 100
 COLORS = ['blue', 'red']
 nombre_de_jetons = 0
+depla = 0
+
 
 # cette liste evolue en meme temps que le plateau mais elle est interpretable par l'interpreteur python 
 
@@ -37,14 +39,47 @@ def arreter():
     ''' Cette fonction va arreter le programme en cours '''
     racine.destroy()
 
+
+
+"""
+def deplacement (event):
+    global nombre_de_jetons
+    global couleurs
+
+    if (50 <= event.x <= 150) and (50 <= event.y <= 150) and (nombre_de_jetons == 5):
+        if place [0][0] == 1:
+            cercle1_1 = canvas.create_oval(X, Y, X, Y, fill = "yellow", outline = "yellow", width=25)
+            print ("test")
+"""
+
 ##################### PLACEMENT DES JETONS AU DEBUT DE LA PARTIE #####################
 
 def clique(event):
-
     ''' Cette fonction va permettre de générer les jetons sur le schéma du jeu '''
-
     global nombre_de_jetons
     global couleur
+    global depla
+
+    global cercle1
+    global cercle2
+    global cercle3
+    global cercle4
+    global cercle5
+    global cercle6
+    global cercle7
+    global cercle8
+    global cercle9
+
+    global cercle1_1
+    global cercle2_2
+    global cercle3_3
+    global cercle4_4
+    global cercle5_5
+    global cercle6_6
+    global cercle7_7
+    global cercle8_8
+    global cercle9_9
+
     if nombre_de_jetons % 2 == 0 :
         couleur = 'blue'
         pion = 1
@@ -52,12 +87,10 @@ def clique(event):
         couleur = 'red'
         pion = -1
     couleurs = couleur
-
     """ cette partie de la fonction permet de placer les jetons en fonction de l'endroit ou l'on clique, il 
         n'est pas possible de placer un jeton au dessus d'un autre """
 
-    if (50 <= event.x <= 150) and (50 <= event.y <= 150) and (nombre_de_jetons <= 5):
-
+    if (50 <= event.x <= 150) and (50 <= event.y <= 150) and (nombre_de_jetons < 6):
         if place [0][0] == 0 :
             cercle1 = canvas.create_oval(X, Y, X, Y, fill = couleurs, outline = couleurs, width=20)
             nombre_de_jetons += 1
@@ -65,8 +98,7 @@ def clique(event):
         victoire ()
         gagne ()
 
-    if (250 <= event.x <= 350) and (50 <= event.y <= 150) and (nombre_de_jetons <= 5):
-        
+    if (250 <= event.x <= 350) and (50 <= event.y <= 150) and (nombre_de_jetons < 6):        
         if place [0][1] == 0 :
             cercle2 = canvas.create_oval(3 * X, Y, 3 * X, Y, fill=couleurs, outline=couleurs, width=20)
             nombre_de_jetons += 1
@@ -74,8 +106,7 @@ def clique(event):
         victoire ()
         gagne ()
 
-    if (450 <= event.x <= 550) and (50 <= event.y <= 150) and (nombre_de_jetons <= 5):
-        
+    if (450 <= event.x <= 550) and (50 <= event.y <= 150) and (nombre_de_jetons < 6):        
         if place [0][2] == 0 :
             cercle3 = canvas.create_oval(5 * X, Y, 5 * X, Y, fill=couleurs, outline=couleurs, width=20)
             nombre_de_jetons += 1
@@ -83,8 +114,7 @@ def clique(event):
         victoire ()
         gagne ()
 
-    if (50 <= event.x <= 150) and (250 <= event.y <= 350) and (nombre_de_jetons <= 5):
-        
+    if (50 <= event.x <= 150) and (250 <= event.y <= 350) and (nombre_de_jetons < 6):        
         if place [1][0] == 0 :
             cercle4 = canvas.create_oval(X, 3 * Y, X, 3 * Y, fill=couleurs, outline=couleurs, width=20)
             nombre_de_jetons += 1
@@ -92,8 +122,7 @@ def clique(event):
         victoire ()
         gagne ()
 
-    if (250 <= event.x <= 350) and (250 <= event.y <= 350) and (nombre_de_jetons <= 5):
-        
+    if (250 <= event.x <= 350) and (250 <= event.y <= 350) and (nombre_de_jetons < 6):        
         if place [1][1] == 0 :
             cercle5 = canvas.create_oval(3 * X, 3 * Y, 3 * X, 3 * Y, fill=couleurs, outline=couleurs, width=20)
             nombre_de_jetons += 1
@@ -101,8 +130,7 @@ def clique(event):
         victoire ()
         gagne ()
 
-    if (450 <= event.x <= 550) and (250 <= event.y <= 350) and (nombre_de_jetons <= 5):
-        
+    if (450 <= event.x <= 550) and (250 <= event.y <= 350) and (nombre_de_jetons < 6):        
         if place [1][2] == 0 :
             cercle6 = canvas.create_oval(5 * X, 3 * Y, 5 * X, 3 * Y, fill=couleurs, outline=couleurs, width=20)
             nombre_de_jetons += 1
@@ -110,8 +138,7 @@ def clique(event):
         victoire ()
         gagne ()
 
-    if (50 <= event.x <= 150) and (450 <= event.y <= 550) and (nombre_de_jetons <= 5):
-        
+    if (50 <= event.x <= 150) and (450 <= event.y <= 550) and (nombre_de_jetons < 6):       
         if place [2][0] == 0 :
             cercle7 = canvas.create_oval(X, 5 * Y, X, 5 * Y, fill=couleurs, outline=couleurs, width=20)
             nombre_de_jetons += 1
@@ -119,8 +146,7 @@ def clique(event):
         victoire ()
         gagne ()
 
-    if (250 <= event.x <= 350) and (450 <= event.y <= 550) and (nombre_de_jetons <= 5):
-        
+    if (250 <= event.x <= 350) and (450 <= event.y <= 550) and (nombre_de_jetons < 6):       
         if place [2][1] == 0 :
             cercle8 = canvas.create_oval(3 * X, 5 * Y, 3 * X, 5 * Y, fill=couleurs, outline=couleurs, width=20)
             nombre_de_jetons += 1
@@ -128,8 +154,7 @@ def clique(event):
         victoire ()
         gagne ()
 
-    if (450 <= event.x <= 550) and (450 <= event.y <= 550) and (nombre_de_jetons <= 5):
-        
+    if (450 <= event.x <= 550) and (450 <= event.y <= 550) and (nombre_de_jetons < 6):        
         if place [2][2] == 0 :
             cercle9 = canvas.create_oval(5 * X, 5 * Y, 5 * X, 5 * Y, fill=couleurs, outline=couleurs, width=20)
             nombre_de_jetons += 1
@@ -137,7 +162,30 @@ def clique(event):
         victoire ()
         gagne ()
 
-    print (place) 
+##################################### DEPLACEMENT ################################
+
+    if (50 <= event.x <= 150) and (50 <= event.y <= 150) and (nombre_de_jetons >= 6):
+        if place [0][0] != 0:
+            cercle1_1 = canvas.create_oval(X, Y, X, Y, fill = "yellow", outline = "yellow", width=25)
+            depla = 1
+        if place [0][0] == 1 or place [0][0] == -1 :
+            pass
+
+    if (250 <= event.x <= 350) and (50 <= event.y <= 150) and (depla == 1):
+        if place [0][0] == 1 :
+            couleurs = "blue"
+        if place [0][0] == -1 :
+            place [0][0] = 0
+            couleurs = "red"   
+        canvas.delete (cercle1)
+        canvas.delete (cercle1_1)
+        cercle1 = canvas.create_oval(3 * X, Y, 3 * X, Y, fill=couleurs, outline=couleurs, width=20)
+        depla = 0
+
+
+    print (place)
+
+     
 
 ################# VICTOIRE ##################
 
@@ -165,11 +213,11 @@ def gagne () :
     if win == 1 :
         print ("Victoire des Bleu")
         blue_win = tk.Canvas (racine, width=200, height=50, bg='blue')
-        blue_win.grid(row = 0, column = 3)
+        blue_win.grid(row = 0, column = 4)
     if win == -1 :
         print ("Victoire des Rouges")
         red_win = tk.Canvas (racine, width=200, height=50, bg='red')
-        red_win.grid(row = 0, column = 3)
+        red_win.grid(row = 0, column = 4)
 
 
 def sauvegarder () :
@@ -179,11 +227,11 @@ def sauvegarder () :
     fic.write(place_save)
     fic.close()
 
-"""
+
 def charger () : 
     fic = open ("sauvegarde.txt", "r")
     print (fic)
-"""
+
 
 
 
@@ -207,18 +255,14 @@ sauvegarde = tk.Button(racine, text= "Sauvegarder", bg = "grey", command=sauvega
 charger = tk.Button(racine, text= "Charger", bg = "grey", command=charger)
 canvas.bind('<Button-1>', clique)
 
-#cela sert juste a créer un espace a droite du canvas de base
-espace = tk.Canvas(racine,width=200, height=1, bg='white')
-espace.grid (column=4)
-
-
 canvas.grid(row=0, column=0, columnspan=4)
 lancement.grid(row=1, column=0)
 arreter.grid(row=1, column=4)
 sauvegarde.grid(row=1, column=2)
 charger.grid(row=1, column=1)
 
-
-
+#cela sert juste a créer un espace a droite du canvas de base
+espace = tk.Canvas(racine,width=200, height=1, bg='white')
+espace.grid (column=4)
 
 racine.mainloop()
