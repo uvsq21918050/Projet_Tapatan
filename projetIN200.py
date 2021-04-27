@@ -164,20 +164,22 @@ def clique(event):
 
 ##################################### DEPLACEMENT ################################
 
-"""ce n'est pas la maniere la plus courte de faire des deplacements mais cela a le merite d'etre fonctionnel"""
+    """dans la deuxieme partie de la fonction principale on code le deplacement de chaques pions. lorque l'on clique sur un \
+        pion deja existant on le selectionne, ensuite on clique a l'endroit ou l'on veut le deplacer. Chaque deplacement est ecrit \
+            indidviduellement car pour le moment c'est la seule methode qui fonctionne."""
+
+### place 1
 
     if (50 <= event.x <= 150) and (50 <= event.y <= 150) and (nombre_de_jetons >= 6):
         if place [0][0] != 0:
             cercle1_1 = canvas.create_oval(X, Y, X, Y, fill = "yellow", outline = "yellow", width=25)
             depla = 1
 
-
     if (250 <= event.x <= 350) and (50 <= event.y <= 150) and (depla == 1):
         if place [0][0] == 1 :
             couleurs = "blue"
             color = 1
         if place [0][0] == -1 :
-            place [0][0] = 0
             couleurs = "red"   
             color = -1
         canvas.delete (cercle1)
@@ -186,6 +188,42 @@ def clique(event):
         depla = 0
         place [0][0] = 0
         place [0][1] = color
+
+    if (250 <= event.x <= 350) and (250 <= event.y <= 350) and (depla == 1):
+        if place [0][0] == 1 :
+            couleurs = "blue"
+            color = 1
+        if place [0][0] == -1 :
+            couleurs = "red"   
+            color = -1
+        canvas.delete (cercle1)
+        canvas.delete (cercle1_1)
+        cercle5 = canvas.create_oval(3 * X, 3 * Y, 3 * X, 3 * Y, fill=couleurs, outline=couleurs, width=20)
+        depla = 0
+        place [0][0] = 0
+        place [1][1] = color
+
+    if (50 <= event.x <= 150) and (250 <= event.y <= 350) and (depla == 1):
+        if place [0][0] == 1 :
+            couleurs = "blue"
+            color = 1
+        if place [0][0] == -1 :
+            couleurs = "red"   
+            color = -1
+        canvas.delete (cercle1)
+        canvas.delete (cercle1_1)
+        cercle4 = canvas.create_oval(X, 3 * Y, X, 3 * Y, fill=couleurs, outline=couleurs, width=20)
+        depla = 0
+        place [0][0] = 0
+        place [1][0] = color
+
+
+
+
+
+
+
+        
 
 
     print (place)
