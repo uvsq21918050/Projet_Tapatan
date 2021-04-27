@@ -164,23 +164,28 @@ def clique(event):
 
 ##################################### DEPLACEMENT ################################
 
+"""ce n'est pas la maniere la plus courte de faire des deplacements mais cela a le merite d'etre fonctionnel"""
+
     if (50 <= event.x <= 150) and (50 <= event.y <= 150) and (nombre_de_jetons >= 6):
         if place [0][0] != 0:
             cercle1_1 = canvas.create_oval(X, Y, X, Y, fill = "yellow", outline = "yellow", width=25)
             depla = 1
-        if place [0][0] == 1 or place [0][0] == -1 :
-            pass
+
 
     if (250 <= event.x <= 350) and (50 <= event.y <= 150) and (depla == 1):
         if place [0][0] == 1 :
             couleurs = "blue"
+            color = 1
         if place [0][0] == -1 :
             place [0][0] = 0
             couleurs = "red"   
+            color = -1
         canvas.delete (cercle1)
         canvas.delete (cercle1_1)
         cercle1 = canvas.create_oval(3 * X, Y, 3 * X, Y, fill=couleurs, outline=couleurs, width=20)
         depla = 0
+        place [0][0] = 0
+        place [0][1] = color
 
 
     print (place)
