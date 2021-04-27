@@ -13,7 +13,7 @@
 # On importe tkinter
 
 import tkinter as tk
-import pickle
+import pickle as pickle
 
 racine = tk.Tk()
 
@@ -22,36 +22,17 @@ Y = 100
 COLORS = ['blue', 'red']
 nombre_de_jetons = 0
 depla = 0
-
+vient_de_deplacer = 0
+selection = 0
 
 # cette liste evolue en meme temps que le plateau mais elle est interpretable par l'interpreteur python 
 
 place = [[0,0,0],[0,0,0],[0,0,0]]
 
-def lancement():
-    ''' On definit une fonction qui va permettre de lancer le schéma du jeu du tapatan '''
-    carre = canvas.create_rectangle(X, Y, 600 - X, 600 - Y, outline='white')
-    ligne_verticale = canvas.create_line(3 * X, Y, 3 * X, 5 * Y, fill='white')
-    ligne_horizontale = canvas.create_line(X, 3 * Y, 5 * X, 3 * Y, fill='white')
-    diagonale1 = canvas.create_line(X, Y, 5 * X, 5 * Y, fill='white')
-    diagonale2 = canvas.create_line(X, 5 * Y, 5 * X, Y, fill='white')
 
 def arreter():
     ''' Cette fonction va arreter le programme en cours '''
     racine.destroy()
-
-
-
-"""
-def deplacement (event):
-    global nombre_de_jetons
-    global couleurs
-
-    if (50 <= event.x <= 150) and (50 <= event.y <= 150) and (nombre_de_jetons == 5):
-        if place [0][0] == 1:
-            cercle1_1 = canvas.create_oval(X, Y, X, Y, fill = "yellow", outline = "yellow", width=25)
-            print ("test")
-"""
 
 ##################### PLACEMENT DES JETONS AU DEBUT DE LA PARTIE #####################
 
@@ -60,6 +41,9 @@ def clique(event):
     global nombre_de_jetons
     global couleur
     global depla
+    global vient_de_deplacer
+    global selection 
+    global pion_selectionne
 
     global cercle1
     global cercle2
@@ -72,14 +56,14 @@ def clique(event):
     global cercle9
 
     global cercle1_1
-    global cercle2_2
-    global cercle3_3
-    global cercle4_4
-    global cercle5_5
-    global cercle6_6
-    global cercle7_7
-    global cercle8_8
-    global cercle9_9
+    global cercle2_1
+    global cercle3_1
+    global cercle4_1
+    global cercle5_1
+    global cercle6_1
+    global cercle7_1
+    global cercle8_1
+    global cercle9_1
 
     if nombre_de_jetons % 2 == 0 :
         couleur = 'blue'
@@ -172,11 +156,19 @@ def clique(event):
 ### place 1
 
     if (50 <= event.x <= 150) and (50 <= event.y <= 150) and (nombre_de_jetons >= 6):
-        if place [0][0] != 0:
-            cercle1_1 = canvas.create_oval(X, Y, X, Y, fill = "yellow", outline = "yellow", width=25)
-            depla = 1
+        selection = 1
+        pion_selectionne = 1
+        if vient_de_deplacer == 0 :
+            if place [0][0] != 0:
+                cercle1_1 = canvas.create_oval(X, Y, X, Y, fill = "yellow", outline = "yellow", width=25)
+                depla = 1
+        if vient_de_deplacer == 1 :
+            vient_de_deplacer -= 1
+            return (vient_de_deplacer)
+        
 
-    if (250 <= event.x <= 350) and (50 <= event.y <= 150) and (depla == 1):
+
+    if (250 <= event.x <= 350) and (50 <= event.y <= 150) and (depla == 1) and (place [0][1] == 0) and (pion_selectionne == 1):
         if place [0][0] == 1 :
             couleurs = "blue"
             color = 1
@@ -185,12 +177,14 @@ def clique(event):
             color = -1
         canvas.delete (cercle1)
         canvas.delete (cercle1_1)
-        cercle1 = canvas.create_oval(3 * X, Y, 3 * X, Y, fill=couleurs, outline=couleurs, width=20)
+        cercle2 = canvas.create_oval(3 * X, Y, 3 * X, Y, fill=couleurs, outline=couleurs, width=20)
         depla = 0
         place [0][0] = 0
         place [0][1] = color
+        vient_de_deplacer = 1
+        selection = 0
 
-    if (250 <= event.x <= 350) and (250 <= event.y <= 350) and (depla == 1):
+    if (250 <= event.x <= 350) and (250 <= event.y <= 350) and (depla == 1) and (place [1][1] == 0) and (pion_selectionne == 1):
         if place [0][0] == 1 :
             couleurs = "blue"
             color = 1
@@ -203,8 +197,10 @@ def clique(event):
         depla = 0
         place [0][0] = 0
         place [1][1] = color
+        vient_de_deplacer = 1
+        selection = 0
 
-    if (50 <= event.x <= 150) and (250 <= event.y <= 350) and (depla == 1):
+    if (50 <= event.x <= 150) and (250 <= event.y <= 350) and (depla == 1) and (place[1][0] == 0) and (pion_selectionne == 1):
         if place [0][0] == 1 :
             couleurs = "blue"
             color = 1
@@ -217,12 +213,95 @@ def clique(event):
         depla = 0
         place [0][0] = 0
         place [1][0] = color
+        vient_de_deplacer = 1
+        selection = 0
+
+### place 2
+
+    if (250 <= event.x <= 350) and (50 <= event.y <= 150) and (nombre_de_jetons >= 6):
+        selection = 1
+        pion_selectionne = 2
+        if vient_de_deplacer == 0 :
+            if place [0][1] != 0:
+                cercle2_1 = canvas.create_oval(3 * X, Y, 3 * X, Y, fill = "yellow", outline = "yellow", width=25)
+                depla = 1
+        if vient_de_deplacer == 1 :
+            vient_de_deplacer -= 1
+            return (vient_de_deplacer)
 
 
+    if (50 <= event.x <= 150) and (50 <= event.y <= 150) and (depla == 1) and (place [0][0] == 0) and (pion_selectionne == 2):
+        if place [0][1] == 1 :
+            couleurs = "blue"
+            color = 1
+        if place [0][1] == -1 :
+            couleurs = "red"   
+            color = -1
+        canvas.delete (cercle2)
+        canvas.delete (cercle2_1)
+        cercle1 = canvas.create_oval(X, Y, X, Y, fill = couleurs, outline = couleurs, width=20)
+        depla = 0
+        place [0][1] = 0
+        place [0][0] = color
+        vient_de_deplacer = 1
 
+    if (250 <= event.x <= 350) and (250 <= event.y <= 350) and (depla == 1) and (place [1][1] == 0) and (pion_selectionne == 2):
+        if place [0][1] == 1 :
+            couleurs = "blue"
+            color = 1
+        if place [0][1] == -1 :
+            couleurs = "red"   
+            color = -1
+        canvas.delete (cercle2)
+        canvas.delete (cercle2_1)
+        cercle5 = canvas.create_oval(3 * X, 3 * Y, 3 * X, 3 * Y, fill=couleurs, outline=couleurs, width=20)
+        depla = 0
+        place [0][1] = 0
+        place [1][1] = color
+        vient_de_deplacer = 1
 
+    if (450 <= event.x <= 550) and (50 <= event.y <= 150) and (depla == 1) and (place [1][2] == 0) and (pion_selectionne == 2):
+        if place [0][1] == 1 :
+            couleurs = "blue"
+            color = 1
+        if place [0][1] == -1 :
+            couleurs = "red"   
+            color = -1
+        canvas.delete (cercle2)
+        canvas.delete (cercle2_1)
+        cercle3 = canvas.create_oval(5 * X, Y, 5 * X, Y, fill=couleurs, outline=couleurs, width=20)
+        depla = 0
+        place [0][1] = 0
+        place [1][2] = color
+        vient_de_deplacer = 1
 
+### place 3
 
+    if (450 <= event.x <= 550) and (50 <= event.y <= 150) and (nombre_de_jetons >= 6):
+        selection = 1
+        pion_selectionne = 3
+        if vient_de_deplacer == 0 :
+            if place [0][2] != 0:
+                cercle3_1 = canvas.create_oval(5 * X, Y, 5 * X, Y, fill = "yellow", outline = "yellow", width=25)
+                depla = 1
+        if vient_de_deplacer == 1 :
+            vient_de_deplacer -= 1
+            return (vient_de_deplacer)
+
+    if (250 <= event.x <= 350) and (50 <= event.y <= 150) and (depla == 1) and (place [0][0] == 0) and (pion_selectionne == 3):
+            if place [0][2] == 1 :
+                couleurs = "blue"
+                color = 1
+            if place [0][2] == -1 :
+                couleurs = "red"   
+                color = -1
+            canvas.delete (cercle3)
+            canvas.delete (cercle3_1)
+            cercle2 = canvas.create_oval(3 * X, Y, 3 * X, Y, fill=couleurs, outline=couleurs, width=20)
+            depla = 0
+            place [0][2] = 0
+            place [0][1] = color
+            vient_de_deplacer = 1
 
         
 
@@ -230,7 +309,6 @@ def clique(event):
     print (place)
 
      
-
 ################# VICTOIRE ##################
 
 def victoire (): 
@@ -272,6 +350,8 @@ def sauvegarder () :
 def charger () : 
     global place
     global nombre_de_jetons
+    global cercle1, cercle2, cercle3, cercle4, cercle5, cercle6, cercle6, cercle7, cercle8, cercle9
+
     place = pickle.load (open("sauvegarde.p", "rb"))
     
     if place [0][0] == 1 :
@@ -322,10 +402,13 @@ def charger () :
     nombre_de_jetons = 6
 
     return (place)
+            
+    
 
-
-
-
+"""
+    fic = open ("sauvegarde.txt", "r")
+    print (fic)
+"""
 
 """
 L1 = place[0][0] + place [0][1] + place [0][2]
@@ -340,14 +423,19 @@ D2 = place[0][2] + place [1][1] + place [2][0]
 
 
 canvas = tk.Canvas(racine, width=600, height=600, bg='black')
-lancement = tk.Button(racine, text='Lancement', bg='grey', command=lancement)
 arreter = tk.Button(racine, text='Arrêter', bg='grey', command=arreter)
 sauvegarde = tk.Button(racine, text= "Sauvegarder", bg = "grey", command=sauvegarder)
 charger = tk.Button(racine, text= "Charger", bg = "grey", command=charger)
 canvas.bind('<Button-1>', clique)
 
+############ PLATEAU #################
+carre = canvas.create_rectangle(X, Y, 600 - X, 600 - Y, outline='white')
+ligne_verticale = canvas.create_line(3 * X, Y, 3 * X, 5 * Y, fill='white')
+ligne_horizontale = canvas.create_line(X, 3 * Y, 5 * X, 3 * Y, fill='white')
+diagonale1 = canvas.create_line(X, Y, 5 * X, 5 * Y, fill='white')
+diagonale2 = canvas.create_line(X, 5 * Y, 5 * X, Y, fill='white')
+
 canvas.grid(row=0, column=0, columnspan=4)
-lancement.grid(row=1, column=0)
 arreter.grid(row=1, column=4)
 sauvegarde.grid(row=1, column=2)
 charger.grid(row=1, column=1)
