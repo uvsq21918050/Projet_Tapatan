@@ -896,6 +896,8 @@ def recommencer () :
     selection_bleu = 0
     selection_rouge = 1
     nombre_de_jetons = 0
+    selection_bleu = 0
+    selection_rouge = 1
     place = [[0,0,0],[0,0,0],[0,0,0]]
 
 
