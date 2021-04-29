@@ -449,6 +449,8 @@ canvas = tk.Canvas(racine, width=600, height=600, bg='black')
 arreter = tk.Button(racine, text='Arrêter', bg='grey', command=arreter)
 sauvegarde = tk.Button(racine, text= "Sauvegarder", bg = "grey", command=sauvegarder)
 charger = tk.Button(racine, text= "Charger", bg = "grey", command=charger)
+recommencer = tk.Button(racine, text = "recommencer", bg = "grey", command = recommencer)
+
 canvas.bind('<Button-1>', clique)
 
 ############ PLATEAU #################
@@ -462,6 +464,7 @@ canvas.grid(row=0, column=0, columnspan=4)
 arreter.grid(row=1, column=4)
 sauvegarde.grid(row=1, column=2)
 charger.grid(row=1, column=1)
+recommencer.grid(row=1, column=3)
 
 #cela sert juste a créer un espace a droite du canvas de base
 espace = tk.Canvas(racine,width=200, height=1, bg='white')
