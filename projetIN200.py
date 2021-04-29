@@ -402,6 +402,29 @@ def charger () :
     nombre_de_jetons = 6
 
     return (place)
+
+def recommencer () :
+    global place, nombre_de_jetons
+    if place [0][0] != 0 :
+        canvas.delete (cercle1)
+    if place [0][1] != 0 :
+        canvas.delete (cercle2)
+    if place [0][2] != 0 :
+        canvas.delete (cercle3)
+    if place [1][0] != 0 :
+        canvas.delete (cercle4)
+    if place [1][1] != 0 :
+        canvas.delete (cercle5)
+    if place [1][2] != 0 :
+        canvas.delete (cercle6)
+    if place [2][0] != 0 :
+        canvas.delete (cercle7)
+    if place [2][1] != 0 :
+        canvas.delete (cercle8)
+    if place [2][2] != 0 :
+        canvas.delete (cercle9)
+    nombre_de_jetons = 0
+    place = [[0,0,0],[0,0,0],[0,0,0]]
             
     
 
