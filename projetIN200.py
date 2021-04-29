@@ -38,32 +38,9 @@ def arreter():
 
 def clique(event):
     ''' Cette fonction va permettre de générer les jetons sur le schéma du jeu '''
-    global nombre_de_jetons
-    global couleur
-    global depla
-    global vient_de_deplacer
-    global selection 
-    global pion_selectionne
-
-    global cercle1
-    global cercle2
-    global cercle3
-    global cercle4
-    global cercle5
-    global cercle6
-    global cercle7
-    global cercle8
-    global cercle9
-
-    global cercle1_1
-    global cercle2_1
-    global cercle3_1
-    global cercle4_1
-    global cercle5_1
-    global cercle6_1
-    global cercle7_1
-    global cercle8_1
-    global cercle9_1
+    global nombre_de_jetons, couleur, depla, vient_de_deplacer, selection, pion_selectionne
+    global cercle1, cercle2, cercle3, cercle4, cercle5, cercle6, cercle7, cercle8, cercle9
+    global cercle1_1, cercle2_1, cercle3_1, cercle4_1, cercle5_1, cercle6_1, cercle7_1, cercle8_1, cercle9_1
 
     if nombre_de_jetons % 2 == 0 :
         couleur = 'blue'
