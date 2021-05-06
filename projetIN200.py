@@ -25,6 +25,8 @@ selection = 0
 selection_bleu = 0
 selection_rouge = 1
 pion_selectionne = 0
+compteur_rouge = 0
+compteur_bleu = 0
 
 # cette liste evolue en meme temps que le plateau mais elle est interpretable par l'interpreteur python 
 
@@ -784,17 +786,18 @@ def victoire ():
     return (win)        
 
 def gagne () : 
-    """cette fonction detect si 3 pions sont allignés"""
-    global win
+    """cette fonction detecte si 3 pions sont allignés"""
+    global win, compteur_bleu, compteur_rouge
     if win == 1 :
         print ("Victoire des Bleu")
         blue_win = tk.Canvas (racine, width=200, height=50, bg='blue')
         blue_win.grid(row = 0, column = 4)
+        compteur_bleu += 1
     if win == -1 :
         print ("Victoire des Rouges")
         red_win = tk.Canvas (racine, width=200, height=50, bg='red')
         red_win.grid(row = 0, column = 4)
-
+        compteur_rouge += 1
 
 def sauvegarder () :
     """Sauvegarde les valeurs dans la liste dans le fichier sauvegarde.txt"""
@@ -924,6 +927,13 @@ arreter.grid(row=1, column=4)
 sauvegarde.grid(row=1, column=2)
 charger.grid(row=1, column=1)
 recommencer.grid(row=1, column=3)
+
+# Compteur affichant les manches gagnées par les deux équipes
+
+canvas.create_text(100, 20, text='Manche(s) gagnées par les bleus :', fill='white')
+canvas.create_text(195, 20, text=compteur_bleu, fill='blue')
+canvas.create_text(100, 40, text='Manche(s) gagnées par les rouges :', fill='white')
+canvas.create_text(198, 40, text=compteur_rouge, fill='red')
 
 #cela sert juste a créer un espace a droite du canvas de base
 espace = tk.Canvas(racine,width=200, height=1, bg='white')
