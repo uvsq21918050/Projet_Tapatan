@@ -25,8 +25,8 @@ selection = 0
 selection_bleu = 0
 selection_rouge = 1
 pion_selectionne = 0
-compteur_rouge = 0
-compteur_bleu = 0
+victoire_bleu = 0
+victoire_rouge = 0
 
 # cette liste evolue en meme temps que le plateau mais elle est interpretable par l'interpreteur python 
 
@@ -130,7 +130,7 @@ def clique(event):
 
     if nombre_de_jetons == 6 :
         suite = tk.Button (racine,text='cliquez ici pour continuer', width=40, height=20, command=phase_deux)
-        suite.grid(row=0, column=2)
+        suite.grid(row=2, column=2)
 
 
 ##################################### DEPLACEMENT ################################
@@ -787,22 +787,26 @@ def victoire ():
 
 def gagne () : 
     """cette fonction detecte si 3 pions sont allignés"""
-    global win, compteur_bleu, compteur_rouge
+    global win, victoire_bleu, victoire_rouge
     if win == 1 :
         print ("Victoire des Bleu")
-        blue_win = tk.Canvas (racine, width=200, height=50, bg='blue')
-        blue_win.grid(row = 0, column = 4)
-        compteur_bleu += 1
+        victoire_bleu += 1
+        compteur_victoire_bleu['text'] = str(victoire_bleu)
+        recommencer()
+        if victoire_bleu == 3 :
+            compteur_victoire_bleu['text'] = "win"
     if win == -1 :
         print ("Victoire des Rouges")
-        red_win = tk.Canvas (racine, width=200, height=50, bg='red')
-        red_win.grid(row = 0, column = 4)
-        compteur_rouge += 1
+        victoire_rouge += 1
+        compteur_victoire_rouge['text'] = str(victoire_rouge)
+        recommencer()
+        if victoire_rouge == 3 :
+            compteur_victoire_rouge['text'] = "win"
+
 
 def sauvegarder () :
     """Sauvegarde les valeurs dans la liste dans le fichier sauvegarde.txt"""
     pickle.dump (place, open("sauvegarde.p", "wb"))
-
 
 def charger () : 
     global place
@@ -905,13 +909,11 @@ def recommencer () :
 
 
 
-
 canvas = tk.Canvas(racine, width=600, height=600, bg='black')
 arreter = tk.Button(racine, text='Arrêter', bg='grey', command=arreter)
 sauvegarde = tk.Button(racine, text= "Sauvegarder", bg = "grey", command=sauvegarder)
 charger = tk.Button(racine, text= "Charger", bg = "grey", command=charger)
-recommencer = tk.Button(racine, text = "recommencer", bg = "grey", command = recommencer)
-
+restart = tk.Button(racine, text = "recommencer", bg = "grey", command = recommencer)
 
 canvas.bind('<Button-1>', clique)
 
@@ -922,18 +924,17 @@ ligne_horizontale = canvas.create_line(X, 3 * Y, 5 * X, 3 * Y, fill='white')
 diagonale1 = canvas.create_line(X, Y, 5 * X, 5 * Y, fill='white')
 diagonale2 = canvas.create_line(X, 5 * Y, 5 * X, Y, fill='white')
 
-canvas.grid(row=0, column=0, columnspan=4)
-arreter.grid(row=1, column=4)
-sauvegarde.grid(row=1, column=2)
-charger.grid(row=1, column=1)
-recommencer.grid(row=1, column=3)
+canvas.grid(row=0, column=0, columnspan=4, rowspan=6)
+arreter.grid(row=6, column=4)
+sauvegarde.grid(row=6, column=2)
+charger.grid(row=6, column=1)
+restart.grid(row=6, column=3)
 
 # Compteur affichant les manches gagnées par les deux équipes
-
-canvas.create_text(100, 20, text='Manche(s) gagnées par les bleus :', fill='white')
-canvas.create_text(195, 20, text=compteur_bleu, fill='blue')
-canvas.create_text(100, 40, text='Manche(s) gagnées par les rouges :', fill='white')
-canvas.create_text(198, 40, text=compteur_rouge, fill='red')
+compteur_victoire_bleu = tk.Label(racine, text=0, font=("Arial", 42), fg='blue')
+compteur_victoire_bleu.grid (row=2,column=4)
+compteur_victoire_rouge = tk.Label(racine, text=0, font=("Arial", 42), fg='red')
+compteur_victoire_rouge.grid (row=3,column=4)
 
 #cela sert juste a créer un espace a droite du canvas de base
 espace = tk.Canvas(racine,width=200, height=1, bg='white')
