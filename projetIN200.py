@@ -783,11 +783,11 @@ def victoire ():
                    place[0][0] + place [1][1] + place [2][2]==-3 or place[0][2] + place [1][1] + place [2][0]==-3 :
         win -= 1
 
-    return (win)        
+    return (win)
 
 def gagne () : 
     """cette fonction detecte si 3 pions sont allignés"""
-    global win, victoire_bleu, victoire_rouge
+    global win, victoire_bleu, victoire_rouge, victoire_partie
     if win == 1 :
         print ("Victoire des Bleu")
         victoire_bleu += 1
@@ -795,6 +795,9 @@ def gagne () :
         recommencer()
         if victoire_bleu == 3 :
             compteur_victoire_bleu['text'] = "win"
+            texte_bleu = "Victoire des bleus (Cliquez pour recommencer)"
+            victoire_partie = tk.Button(racine,text=texte_bleu, width=40, height=20, command=victoire_partie)
+            victoire_partie.grid(row=2, column=2)
     if win == -1 :
         print ("Victoire des Rouges")
         victoire_rouge += 1
@@ -802,7 +805,18 @@ def gagne () :
         recommencer()
         if victoire_rouge == 3 :
             compteur_victoire_rouge['text'] = "win"
+            texte_rouge = "Victoires des rouges (Cliquez pour recommencer)"
+            victoire_partie = tk.Button(racine,text=texte_rouge, width=40, height=20, command=victoire_partie)
+            victoire_partie.grid(row=2, column=2)
 
+def victoire_partie():
+    global place, nombre_de_jetons, victoire_partie, victoire_bleu, victoire_rouge
+    recommencer()
+    victoire_bleu = 0
+    compteur_victoire_bleu['text'] = str(victoire_bleu)
+    victoire_rouge = 0
+    compteur_victoire_rouge['text'] = str(victoire_rouge)
+    victoire_partie.destroy()
 
 def sauvegarder () :
     """Sauvegarde les valeurs dans la liste dans le fichier sauvegarde.txt"""
