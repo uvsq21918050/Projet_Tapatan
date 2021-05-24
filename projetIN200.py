@@ -2,10 +2,10 @@
 # groupe MPCI 2
 # Zachary MARIANI
 # Jeremy ZORIC
-# Baptiste PARIS
-# Mohamed AKARKACH
-# Pascal CHRISTOPHE
-# El guehoudi Wacil
+# Baptiste PARIS (absent)
+# Mohamed AKARKACH (absent)
+# Pascal CHRISTOPHE (absent)
+# El guehoudi Wacil (absent)
 
 # https://github.com/uvsq22004748/Projet_Tapatan
 #########################################
