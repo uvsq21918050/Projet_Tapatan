@@ -897,11 +897,6 @@ def draw ():
                         place[0][1]==0 and place [1][1]==0 and place [2][1]==0 or place[0][2]==0 and place [1][2]==0 and place [2][2]==0 or \
                         place[0][0]==0 and place [1][1]==0 and place [2][2]==0 or place[0][2]==0 and place [1][1]==0 and place [2][0]==0:
                         Tours+=1
-                    elif place[0][0]==0 and place [0][1]== 0 and place [0][2]==0 or place[1][0]==0 and place [1][1]==0 and place [1][2]==0 or \
-                        place[2][0]==0 and place [2][1]==0 and place [2][2]==0 or place[0][0]==0 and place [1][0]==0 and place [2][0]==0 or \
-                        place[0][1]==0 and place [1][1]==0 and place [2][1]==0 or place[0][2]==0 and place [1][2]==0 and place [2][2]==0 or \
-                        place[0][0]==0 and place [1][1]==0 and place [2][2]==0 or place[0][2]==0 and place [1][1]==0 and place [2][0]==0:
-                        Tours+=1
     if Tours == 3 :
         win = 2
     print (Tours)
