@@ -887,12 +887,17 @@ def victoire_partie():
 def draw (): 
     global win
     global Tours
-    
+    """verifie si une partie du plateau est égale a zero et si elle l'est alors ajoute un au compteur."""
     if  place[0][0] + place [0][1] + place [0][2]!=3 or place[1][0] + place [1][1] + place [1][2]!=3 or \
         place[2][0] + place [2][1] + place [2][2]!=3 or place[0][0] + place [1][0] + place [2][0]!=3 or \
         place[0][1] + place [1][1] + place [2][1]!=3 or place[0][2] + place [1][2] + place [2][2]!=3 or \
         place[0][0] + place [1][1] + place [2][2]!=3 or place[0][2] + place [1][1] + place [2][0]!=3 :
                     if  place[0][0]==0 and place [0][1]== 0 and place [0][2]==0 or place[1][0]==0 and place [1][1]==0 and place [1][2]==0 or \
+                        place[2][0]==0 and place [2][1]==0 and place [2][2]==0 or place[0][0]==0 and place [1][0]==0 and place [2][0]==0 or \
+                        place[0][1]==0 and place [1][1]==0 and place [2][1]==0 or place[0][2]==0 and place [1][2]==0 and place [2][2]==0 or \
+                        place[0][0]==0 and place [1][1]==0 and place [2][2]==0 or place[0][2]==0 and place [1][1]==0 and place [2][0]==0:
+                        Tours+=1
+                    elif place[0][0]==0 and place [0][1]== 0 and place [0][2]==0 or place[1][0]==0 and place [1][1]==0 and place [1][2]==0 or \
                         place[2][0]==0 and place [2][1]==0 and place [2][2]==0 or place[0][0]==0 and place [1][0]==0 and place [2][0]==0 or \
                         place[0][1]==0 and place [1][1]==0 and place [2][1]==0 or place[0][2]==0 and place [1][2]==0 and place [2][2]==0 or \
                         place[0][0]==0 and place [1][1]==0 and place [2][2]==0 or place[0][2]==0 and place [1][1]==0 and place [2][0]==0:
